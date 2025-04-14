@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="../Content/Site.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        td, th {
+            text-align: center;
+        }
+
+        body {
+            background-color: darkseagreen;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .navbar {
+            background-color: lightcyan;
+        }
+
+        .content {
+            display: none;
+        }
+
+            .content.active {
+                display: block;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1 id="firstHeading">Ritshidze Nedzimauli</h1>
+        <hr id="hr_header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li class="m_item"><a href="/Home/Index">MAIN</a></li>
+                    
+                </ul>
+            </div>
+        </nav>
+        <div>
+            
+
+            <div class="data-summary">
+                <article class="about">
+                    <div class="btn-container btn-group-justified">
+                        <div class="btn-group">
+                            <button class="tab-btn active btn " data-id="Bio">Background and biography</button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="tab-btn btn " data-id="Hobbies">Hobbies</button>
+                        </div>
+                        <div class="btn-group">
+                            <button class="tab-btn btn " data-id="Modules">Modules</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="content active panel panel-default" id="Bio">
+                <div class="panel-body">
+                    <p>
+                        <img src="Image/hawkeye.jpg" style="float:left; width:100px; height:150px;object-fit:contain; padding: 5px" />
+                        Ritshidze Nedzimauli was born in Limpopo in a village called Lwamondo. He went to Lwamondo High School.
+                        He studies BCom Informatics because he believes BCom Informatics offers diverse roles 
+                        (e.g., programmer, analyst, network admin) and job security,
+                        appealing to someone practical and forward-thinking.
+
+                       
+                    </p>
+                </div>
+            </div>
+
+            <div class="content panel panel-default" id="Hobbies">
+                <div class="panel-body">
+                    <p>
+                        <img src="Image/IMG-20250310-WA0105.jpg" style="float:right; width:150px; height:150px;object-fit:contain" />
+                        Enjoys coding, playing pool games, and playing football.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content panel panel-default " id="Modules">
+                <div class="panel-body">
+                   
+                    <table>
+                        <tr>
+                            <th>Modules Semester 1</th>
+                            <th>Modules Semester 2</th>
+                        </tr>
+                        <tr>
+                            <td>INF 112</td>
+                            <td>INF 113</td>
+                        </tr>
+                        <tr>
+                            <td>INF 271</td>
+                            <td>INF 272</td>
+                        </tr>
+                        <tr>
+                            <td>STK 110</td>
+                            <td>STK 210</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+    var about = document.querySelector(".data-summary");
+    console.log(about);
+
+    var btns = document.querySelectorAll(".tab-btn");
+    console.log(btns);
+
+    const articles = document.querySelectorAll(".content");
+
+    about.addEventListener("click", function (e) {
+        const id = e.target.dataset.id;
+        if (id) {
+            // remove 'active' from the classlist of all buttons
+            btns.forEach(function (btn) {
+                btn.classList.remove("active");
+            });
+            //add active to only the one that was clicked
+            e.target.classList.add("active");
+
+            // remove 'active' (hide) from all the articles
+            articles.forEach(function (article) {
+                article.classList.remove("active");
+            });
+            //add active only to the article with the same id as the button that was clicked
+            const element = document.getElementById(id);
+            element.classList.add("active");
+        }
+    });
+</script>

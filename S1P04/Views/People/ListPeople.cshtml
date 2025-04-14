@@ -1,0 +1,132 @@
+﻿@model IEnumerable<u24717739_Practical_5.Models.PersonModel>
+
+@{
+    ViewBag.Title = "List of People";
+}
+
+<h2>List of People</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    Search string: <input type="text" id="search" size="20" name="search">
+    <button onclick="ST()">Submit</button>
+</p>
+
+<table class="table table-bordered">
+
+    <tr style="background-color: darkgreen; color: white; ">
+        <th width="16%">
+            @Html.DisplayNameFor(model => model.StuNumber)
+        </th>
+        <th width="16%">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th width="16%">
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th class="text-center" width="16%">
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th class="text-center" width="16%">
+            Delete
+        </th>
+    </tr>
+
+    <tbody id="info">
+        @foreach (var item in Model) 
+        {
+            <tr class="rowcontent">
+                <td width="16%">
+                    @Html.DisplayFor(modelItem => item.StuNumber)
+                </td>
+                <td width="16%">
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td width="16%">
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td class="text-center" width="16%">
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                
+                
+                <td class="text-center" width="16%">
+                    <button type="button" class="btn btn-success btn-sm" onclick="delete_row(this)">Delete</button>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+<p>
+    <button onclick="Save()">Save to local storage</button>
+    <button onclick="Retrieve()">Retrieve from local storage</button>
+    <button onclick="Clear()">Clear local storage</button>
+</p>
+
+@section scripts {
+    <script type="text/javascript">
+
+        
+        var tableBody = document.getElementById("info");
+       
+        function Save() {
+
+            var tableBody = document.getElementById("info");
+            console.log(tableBody);
+            const tableData = JSON.stringify(tableBody.innerHTML);
+            localStorage.setItem("tableData", tableData);
+ 
+        }
+
+        function Clear() {
+            localStorage.clear();
+        }
+
+        function Retrieve() {
+  
+            var tableData = localStorage.getItem("tableData");
+            console.log(tableData);
+
+            tableBody.innerHTML = " ";
+
+            const tableHTML = JSON.parse(tableData);
+            tableBody.innerHTML = tableHTML
+
+        }
+
+        var d = document.getElementById("info");
+        const x = d.children;
+        console.log(x);
+
+        
+        function ST() {
+            var s = document.getElementById("search").value;
+            const pattern = new RegExp(s);
+            console.log(pattern);
+
+            for (let i = 0; i < x.length; i++) {
+
+                if (pattern.test(x[i].cells[1].innerText)) {
+                    x[i].style.color = "red";
+                    setTimeout(function () {
+                        x[i].style.color = "black";
+                    }, 3000);
+                }
+                    
+            }
+        }
+
+         
+        function delete_row(e) {
+            e.parentElement.parentElement.remove();
+            
+        }
+
+        
+    </script>
+}

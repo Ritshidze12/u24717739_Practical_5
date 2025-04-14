@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@*  Here is this property and assign it this value
+    Grab anything you want to grab
+    Put any property in the viewbag as much as we want
+    Such as Viewbag.Whatever = "Foo";
+*@
+
+<script src="~/Scripts/jquery.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.min.js"></script>
+
+<h1>Ritshidze Nedzimauli</h1>
+<h2>Practical 5</h2>
+
+<script type="text/javascript">
+
+    $("#accordion").accordion({
+        // Slide animation or not or length
+        animate: 500,
+        // Starting tab
+        active: false,
+        // Collapsible if same tab is clicked
+        collapsible: true,
+        // Event that triggers
+        event: "click",
+        // Height based on content (content) or largest (auto)
+        heightStyle: "content"
+    });
+</script>
